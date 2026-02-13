@@ -1,0 +1,62 @@
+{
+  "name": "Invoque",
+  "short_name": "Invoque",
+  "description": "Where Your Voice Begins",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#9333ea",
+  "theme_color": "#9333ea",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-monochrome.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "monochrome"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/screenshot-1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/screenshot-2.png",
+      "sizes": "720x540",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["social", "photo", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Feed",
+      "short_name": "Feed",
+      "description": "View your feed",
+      "url": "/ladder",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Upload",
+      "short_name": "Upload",
+      "description": "Create new post",
+      "url": "/upload",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96", "type": "image/svg+xml" }]
+    }
+  ]
+}

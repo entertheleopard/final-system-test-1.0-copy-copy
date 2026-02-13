@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Invoque - Where Your Voice Begins</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="description" content="Where Your Voice Begins" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#9333ea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Invoque" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon-maskable.svg" />
+    <link rel="mask-icon" href="/icon-monochrome.svg" color="#9333ea" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Prevent zoom on input focus (iOS) -->
+    <style>
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+      
+      /* Safe area insets for notched devices */
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+      
+      /* Prevent pull-to-refresh */
+      body {
+        overscroll-behavior-y: contain;
+      }
+
+      /* Initial Splash Screen */
+      #app-splash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #9333ea;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+      }
+      
+      #app-splash svg {
+        width: 120px;
+        height: 120px;
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.05); opacity: 0.9; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Initial Splash Screen -->
+    <div id="app-splash">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M256 130C230 130 215 140 215 160C215 175 225 185 240 185C255 185 265 175 265 160C265 155 263 152 260 150C275 150 290 160 290 180L270 330C265 360 245 380 215 380C190 380 175 365 175 345C175 330 185 320 200 320C215 320 225 330 225 345C225 350 223 353 220 355C235 355 250 345 250 325L270 175C275 145 295 130 325 130C350 130 365 145 365 165C365 180 355 190 340 190C325 190 315 180 315 165C315 160 317 157 320 155C305 155 290 165 290 185L256 130Z" fill="white"/>
+      </svg>
+    </div>
+
+    <div id="app"></div>
+    <script type="module" src="./src/index.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('SW registered:', registration);
+            })
+            .catch((error) => {
+              console.log('SW registration failed:', error);
+            });
+        });
+      }
+
+      // Splash screen control
+      window.dismissSplashScreen = () => {
+        const splash = document.getElementById('app-splash');
+        if (splash && !splash.classList.contains('dismissed')) {
+          splash.classList.add('dismissed');
+          splash.style.opacity = '0';
+          setTimeout(() => splash.remove(), 500);
+        }
+      };
+
+      // Safety fallback: dismiss after 5 seconds if app hasn't loaded
+      setTimeout(() => {
+        if (window.dismissSplashScreen) window.dismissSplashScreen();
+      }, 5000);
+    </script>
+  </body>
+</html>

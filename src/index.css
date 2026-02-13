@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400&family=Great+Vibes&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom slider thumb styles */
+.slider-thumb::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: hsl(var(--color-primary));
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.slider-thumb::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider-thumb::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: hsl(var(--color-primary));
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.slider-thumb::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Safe area insets for notched devices */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Prevent text selection on touch */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch-friendly tap targets */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent pull-to-refresh */
+body {
+  overscroll-behavior-y: contain;
+}
+
+@layer base {
+  :root.light {
+    --color-primary: 280 100% 70%;
+    --color-primary-foreground: 0 0% 100%;
+    --color-primary-hover: 280 100% 65%;
+    --color-primary-active: 280 100% 60%;
+    
+    --color-secondary: 220 80% 92%;
+    --color-secondary-foreground: 220 80% 20%;
+    --color-secondary-hover: 220 80% 88%;
+    --color-secondary-active: 220 80% 84%;
+    
+    --color-tertiary: 0 0% 96%;
+    --color-tertiary-foreground: 220 15% 25%;
+    
+    --color-accent: 280 100% 70%;
+    --color-accent-foreground: 0 0% 100%;
+    
+    --color-background: 0 0% 100%;
+    --color-foreground: 220 15% 15%;
+    --color-border: 220 15% 85%;
+    
+    --color-success: 150 65% 40%;
+    --color-success-foreground: 0 0% 100%;
+    
+    --color-warning: 40 90% 50%;
+    --color-warning-foreground: 40 40% 20%;
+    
+    --color-error: 0 80% 55%;
+    --color-error-foreground: 0 0% 100%;
+    
+    --color-info: 210 90% 50%;
+    --color-info-foreground: 0 0% 100%;
+    
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'Fira Code', monospace;
+  }
+
+  :root.dark {
+    --color-primary: 280 100% 70%;
+    --color-primary-foreground: 0 0% 100%;
+    --color-primary-hover: 280 100% 65%;
+    --color-primary-active: 280 100% 60%;
+    
+    --color-secondary: 220 20% 20%;
+    --color-secondary-foreground: 220 80% 80%;
+    --color-secondary-hover: 220 20% 25%;
+    --color-secondary-active: 220 20% 30%;
+    
+    --color-tertiary: 220 15% 15%;
+    --color-tertiary-foreground: 220 15% 70%;
+    
+    --color-accent: 280 100% 70%;
+    --color-accent-foreground: 0 0% 100%;
+    
+    --color-background: 220 15% 10%;
+    --color-foreground: 220 15% 95%;
+    --color-border: 220 15% 25%;
+    
+    --color-success: 150 65% 45%;
+    --color-success-foreground: 0 0% 100%;
+    
+    --color-warning: 40 90% 55%;
+    --color-warning-foreground: 40 40% 10%;
+    
+    --color-error: 0 80% 60%;
+    --color-error-foreground: 0 0% 100%;
+    
+    --color-info: 210 90% 55%;
+    --color-info-foreground: 0 0% 100%;
+    
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'Fira Code', monospace;
+  }
+  
+  html,
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  * {
+    @apply border-border;
+  }
+}
